@@ -1,299 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Your Name - Portfolio</title>
+    <link href="style.css" rel="stylesheet"/>
+    <link href="mediaqueries.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <nav id="desktop-nav">
-        <div class="logo">Shiven Ajwaliya</div>
-        <div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <!-- Logo/Name -->
+            <div class="logo">
+                <a href="#hero">SHIVEN</a>
+            </div>
+            <!-- Desktop Navigation Links -->
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#hero">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#experience">Experience</a></li>
             </ul>
+            <!-- Contact Button -->
+            <div class="nav-cta">
+                <a class="contact-btn" href="#contact">Contact Me</a>
+            </div>
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="#hero" onclick="toggleMenu()">About</a>
+            <a href="#education" onclick="toggleMenu()">Education</a>
+            <a href="#skills" onclick="toggleMenu()">Skills</a>
+            <a href="#projects" onclick="toggleMenu()">Projects</a>
+            <a href="#experience" onclick="toggleMenu()">Experience</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
         </div>
     </nav>
-    <nav id="hamburger-nav">
-        <div class="logo">Shiven Ajwaliya</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+
+    <!-- Hero/About Section -->
+    <section class="section-light" id="hero">
+        <div class="hero-container">
+            <div class="profile-image">
+                <div class="profile-pic">
+                    <img src="./assets/profile-pic.png" alt="Shiven Ajwaliya Profile Photo" />
+                </div>
             </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
-        </div>
-    </nav>
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./assets/profile-pic.png" alt="Shiven Ajwaliya Profile Picture">
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello I'm</p>
-            <h1 class="title">Shiven Ajwaliya</h1>
-            <p class="section__text__p2">Backend Developer</p>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">
-                    Download CV
-                </button>
-                <button class="btn btn-color-1" onclick="location.href='./#contact'">
-                    Contact Info
-                </button>
-            </div>
-            <div id="socials-container">
-                <a href="https://www.linkedin.com/in/shiven-ajwaliya" target="_blank">
-                    <img src="./assets/linkedin.png" alt="My LinkedIn Profile" class="icon">
-                </a>
-                <a href="https://github.com/RemainingDelta" target="_blank">
-                    <img src="./assets/github.png" alt="My Github Profile" class="icon">
-                </a>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Hey, I'm <span class="name-highlight">Shiven Ajwaliya</span>, a CS student at <span class="name-highlight">Northeastern University</span> who is passionate about building meaningful tech products. Here, you can check out what I'm working on.
+                </h1>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="./assets/resume.pdf" target="_blank">Download Resume</a>
+                    <a class="btn btn-secondary" href="#contact">Get in Touch</a>
+                </div>
+                <div class="social-links">
+                    <a class="social-link" href="https://linkedin.com/in/shiven-ajwaliya" target="_blank">
+                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://github.com/RemainingDelta" target="_blank">
+                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="mailto:shiven.ajwaliya@yahoo.com">
+                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.727L12 10.845l9.637-7.024h.727A1.636 1.636 0 0 1 24 5.457z"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
-    <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="about__pic-container">
-                <img src="./assets/about-pic.png" alt="Profile Picture" class="about-pic"/>
-            </div>
-            <div class="about-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <img src="./assets/experience.png" alt="Experience Icon" class="icon"/>
-                        <h3>Experience</h3>
-                        <p>100 years<br />Backend Development</p>
-                    </div>
-                    <div class="details-container">
-                        <img src="./assets/education.png" alt="Education Icon" class="icon"/>
-                        <h3>Education</h3>
-                        <p>CS Degree<br />Northeastern</p>
-                    </div>
-                </div>
-                <div class="text-container">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum iure enim dolorum! Id, pariatur inventore corporis minus sunt mollitia ducimus eos ratione, officia omnis optio totam praesentium cum magnam iste!
-                    </p>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow Icon" class="icon arrow" onclick="location.href='./#experience'"/>
-    </section>
-    <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Frontend Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>HTML</h3>
-                                <p>Experienced</p>
+
+    <!-- Education Section -->
+    <section class="section-dark" id="education">
+        <div class="container">
+            <h2 class="section-title">My Education</h2>
+            <p class="section-subtitle">My academic background and qualifications</p>
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="education-title">Bachelor's in Computer Science</h3>
+                            <p class="education-concentration">Concentration in Artificial Intelligence</p>
+                            <div class="education-institution-row">
+                                <div class="education-info-row">
+                                    <span class="education-institution">Northeastern University</span>
+                                    <span class="education-period">Sept 2024 - Dec 2027</span>
+                                </div>
+                                <div class="education-info-row">
+                                    <span class="education-institution education-study-abroad">
+                                        <strong>Study Abroad: Data & Software in Int'l Gov't & Politics, Belgium</strong>
+                                    </span>
+                                    <span class="education-period">May 2025 - June 2025</span>
+                                </div>
                             </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>CSS</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>SASS</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>JavaScript</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>TypeScript</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Backend Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>SQL</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>Node JS</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>Python</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>Java</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>Postgres</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience Icon" class="icon"/>
-                            <div>
-                                <h3>Express JS</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
+                        </div>
+                        <p class="education-description">
+                            Currently pursuing my degree with a focus on software engineering, data structures, algorithms, and web development. Actively participating in hackathons and coding competitions while maintaining academic excellence.
+                        </p>
+                        <div class="education-skills">
+                            <span class="skill-tag">Computer Science</span>
+                            <span class="skill-tag">Artificial Intelligence</span>
+                            <span class="skill-tag">Data Structures</span>
+                            <span class="skill-tag">Algorithms</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow Icon" class="icon arrow" onclick="location.href='./#projects'"/>
     </section>
-    <section id="projects">
-        <p class="section__text__p1">Browse My Recent</p>
-        <h1 class="title">Projects</h1>
-        <div class="experience-details-container">
-          <div class="about-containers">
-            <div class="details-container color-container">
-              <div class="article-container">
-                <img
-                  src="./assets/project-1.png"
-                  alt="Project 1"
-                  class="project-img"
-                />
-              </div>
-              <h2 class="experience-sub-title project-title">🧭 Care Compass</h2>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/RemainingDelta/Care-Compass.git'"
-                >
-                  Github
-                </button>
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/'"
-                >
-                  Blog
-                </button>
-              </div>
+
+    <!-- Skills Section -->
+    <section class="section-light" id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <p class="section-subtitle">Technologies and tools I work with</p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">Frontend Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div> 
+                        <div class="skill-item">
+                            <span class="skill-name">Streamlit</span>
+                            <span class="skill-level">Basic</span>
+                        </div> 
+                        <div class="skill-item">
+                            <span class="skill-name">Vitest</span>
+                            <span class="skill-level">Basic</span>
+                        </div> 
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">Backend Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Express.js</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PostgreSQL</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Flask</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">TypeScript</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">Tools & Others</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Git</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ESLint</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Prettier</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Postman</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="details-container color-container">
-              <div class="article-container">
-                <img
-                  src="./assets/project-2.png"
-                  alt="Project 2"
-                  class="project-img"
-                />
-              </div>
-              <h2 class="experience-sub-title project-title">Project Two</h2>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/'"
-                >
-                  Github
-                </button>
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/'"
-                >
-                  Live Demo
-                </button>
-              </div>
-            </div>
-            <div class="details-container color-container">
-              <div class="article-container">
-                <img
-                  src="./assets/project-3.png"
-                  alt="Project 3"
-                  class="project-img"
-                />
-              </div>
-              <h2 class="experience-sub-title project-title">Project Three</h2>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/'"
-                >
-                  Github
-                </button>
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/'"
-                >
-                  Live Demo
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
-        <img
-          src="./assets/arrow.png"
-          alt="Arrow icon"
-          class="icon arrow"
-          onclick="location.href='./#contact'"
-        />
     </section>
-    <section id="contact">
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-          <div class="contact-info-container">
-            <img
-              src="./assets/email.png"
-              alt="Email icon"
-              class="icon contact-icon email-icon"
-            />
-            <p><a href="mailto:examplemail@gmail.com">Example@gmail.com</a></p>
-          </div>
-          <div class="contact-info-container">
-            <img 
-              src="./assets/linkedin.png"
-              alt="LinkedIn icon"
-              class="icon contact-icon"
-            />
-            <p><a href="https://www.linkedin.com/in/shiven-ajwaliya">LinkedIn</a></p>
-          </div>
+
+    <!-- Experience Section -->
+    <section class="section-dark" id="experience">
+        <div class="container">
+            <h2 class="section-title">My Experience</h2>
+            <p class="section-subtitle">My professional journey and career progression</p>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="experience-title">Co-Founder</h3>
+                            <span class="experience-company">Rainfall Learning</span>
+                            <span class="experience-period">June 2025 - Present</span>
+                        </div>
+                        <ul class="experience-description">
+                            <li>Co-founded Rainfall Learning, a platform dedicated to providing high-quality educational Computer Science resources and courses targeted towards high school students</li>
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">ExpressJS</span>
+                            <span class="skill-tag">NodeJS</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Prisma</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="experience-title">Backend AI Developer</h3>
+                            <span class="experience-company">Quak LLC</span>
+                            <span class="experience-period">April 2025 - Sept 2025</span>
+                        </div>
+                        <ul class="experience-description">
+                            <li>Built a day-level trip recommendation system using OpenAI embeddings, Pinecone vector search, and Prisma/PostgreSQL to match user goals, budgets, and activity preferences</li>
+                            <li>Engineered dynamic itinerary assembly logic that composes 3–28 day trips with lodging, flight injection, and budget enforcement across 1000+ sourced itinerary blocks</li>
+                            <li>Delivered an intuitive editing experience for travel itineraries, with personalized day suggestions, explorable alternatives, and reversible changes via undo history</li>
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">ExpressJS</span>
+                            <span class="skill-tag">NodeJS</span>
+                            <span class="skill-tag">Vector Embeddings</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Prisma</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="experience-title">Prototype and GenAI Research Intern</h3>
+                            <span class="experience-company">InnoEra</span>
+                            <span class="experience-period">Jul 2023 - Aug 2023 </span>
+                        </div>
+                        <ul class="experience-description">
+                            <li>Collaborated on website prototype enhancements and contributed to the overhaul of InnoEra (innoera.com) delivering custom solutions for finance, banking, insurance, and local living experiences</li>
+                            <li>Researched GenAI offerings to support company’s future plans</li>                        
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Research</span>
+                            <span class="skill-tag">AI</span>
+                            <span class="skill-tag">Canva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Projects Section -->
+    <section class="section-light" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Some of my favorite projects I've worked on</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-6.png" alt="Screenshot of Rainfall Learning project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rainfall Learning</h3>
+                        <ul class="project-description">
+                            <li></li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">ExpressJS</span>
+                            <span class="tech-tag">NodeJS</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Prisma</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-5.png" alt="Screenshot of Quak project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Quak AI Systems</h3>
+
+                        <ul class="project-description">
+                            <li>Built a day-level trip recommendation system using OpenAI embeddings, Pinecone vector search, and Prisma/PostgreSQL to match user goals, budgets, and activity preferences</li>
+                            <li>Engineered dynamic itinerary assembly logic that composes 3-28 day trips with lodging, flight injection, and budget enforcement across 1000+ sourced itinerary blocks</li>
+                            <li>Delivered an intuitive editing experience for travel itineraries, with personalized day suggestions, explorable alternatives, and reversible changes via undo history</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">AI</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">ExpressJS</span>
+                            <span class="tech-tag">NodeJS</span>
+                            <span class="tech-tag">Vector Embeddings</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Prisma</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-4.png" alt="Screenshot of Care Compass project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a class="project-link" href="https://github.com/RemainingDelta/Care-Compass" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                    </svg>
+                                </a>
+                                <a class="project-link" href="https://github.com/Arthur-T-Huang/Care-Compass-Blog" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Care Compass</h3>
+                        <ul class="project-description">
+                            <li>Built a personalized country recommender using cosine similarity on healthcare priorities, tailored to relocating residents</li>
+                            <li>Implemented time-series regression to forecast health indicator trends from World Health Organization (WHO) data, supporting use cases like academic research and policy planning</li>
+                            <li>Designed a global SQL data model integrating 7+ public datasets, with support for country comparisons, user preferences, and predictive scores</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">ML</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-3.png" alt="Screenshot of Co-Design project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a class="project-link" href="https://github.com/Aryan0102/CoDesign" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                    </svg>
+                                </a>
+                                <a class="project-link" href="https://codesign-group1.netlify.app" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CoDesign</h3>
+                        <ul class="project-description">
+                            <li>Built a Flask-based platform enabling developers and designers to create profiles and discover recommended collaborators based on matching skills, interests, experience, and availability</li>
+                            <li>Implemented secure user authentication using JWT and designed RESTful APIs to support profile management, post creation, and real-time collaboration features, ensuring seamless user interactions across the platform</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-2.png" alt="Screenshot of RoadQuest project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a class="project-link" href="https://github.com/AbhinavGonthina/Hackbeanpot" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">RoadQuest (Hackathon Project)</h3>
+                        <ul class="project-description">
+                            <li>Developed a full-stack web application that gamifies road trips by generating dynamic quests between user-inputted locations, leveraging Google Maps API and OpenAI's GPT-based prompt engineering </li>                        
+                            <li>Engineered the backend with Flask, MongoDB, and MongoEngine to support account creation, secure authentication (Bcrypt), and XP-based quest progress tracking with real-time leaderboard updates</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">OpenAI API</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/project-1.png" alt="Screenshot of Diabetes Prediction project" class="project-img" />
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a class="project-link" href="https://github.com/RemainingDelta/Diabetes-Prediction" target="_blank">
+                                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Diabetes Prediction Using ML & Python</h3>
+                        <ul class="project-description">
+                            <li>Built a predictive model to assess diabetes risk using algorithms like Random Forest and Gradient Boosting, utilizing Python for data preprocessing, feature engineering, and evaluation with metrics like ROC-AUC and accuracy</li>                        
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">ML</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Jupyter Notebook</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-dark" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">I'm always open to discussing new opportunities and interesting projects</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <a class="clickable-card" href="mailto:shiven.ajwaliya@yahoo.com">
+                        <div class="contact-icon">
+                            <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.727L12 10.845l9.637-7.024h.727A1.636 1.636 0 0 1 24 5.457z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>shiven.ajwaliya@yahoo.com</p>
+                        </div>
+                    </a>
+                    <a class="clickable-card" href="https://linkedin.com/in/shiven-ajwaliya">
+                        <div class="contact-icon">
+                            <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>Connect with me</p>
+                        </div>
+                    </a>
+                    <a class="clickable-card" href="https://github.com/RemainingDelta">
+                        <div class="contact-icon">
+                            <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>View my code</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input id="name" name="name" placeholder="Your Name" required type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <input id="email" name="email" placeholder="Your Email" required type="email"/>
+                        </div>
+                        <div class="form-group">
+                            <input id="subject" name="subject" placeholder="Subject" required type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section-light">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Shiven Ajwaliya. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#hero">About</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
