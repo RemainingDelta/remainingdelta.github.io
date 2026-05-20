@@ -426,10 +426,6 @@ section {
     box-shadow: 0 0 18px rgba(68, 61, 255, 0.45);
 }
 
-.skill-level {
-    display: none;
-}
-
 /* Projects Section */
 .projects-grid {
     display: grid;

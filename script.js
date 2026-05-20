@@ -384,6 +384,41 @@ async function loadProjects() {
 
 document.addEventListener('DOMContentLoaded', loadProjects);
 
+function renderSkills(rows, container) {
+    rows.sort((a, b) => (parseInt(a.sort_order) || 999) - (parseInt(b.sort_order) || 999));
+
+    const categories = rows.filter(r => r.category && r.name).map(row => {
+        const items = row.name.split('|').filter(Boolean)
+            .map(s => `<div class="skill-item"><span class="skill-name">${s.trim()}</span></div>`)
+            .join('');
+        return `
+        <div class="skill-category">
+            <h3 class="category-title">${row.category}</h3>
+            <div class="skills-list">${items}</div>
+        </div>`;
+    });
+
+    container.innerHTML = categories.join('');
+}
+
+async function loadSkills() {
+    const container = document.querySelector('#skills .skills-grid');
+    if (!container) return;
+
+    container.innerHTML = '<p class="cms-loading">Loading...</p>';
+
+    try {
+        const rows = await fetchSheet('Skills');
+        renderSkills(rows, container);
+        initScrollAnimations(container);
+    } catch (err) {
+        container.innerHTML = '<p class="cms-error">Could not load skills. Please try refreshing.</p>';
+        console.error('Skills fetch failed:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadSkills);
+
 // Prevent form submission on Enter key in input fields (except textarea)
 document.addEventListener('DOMContentLoaded', function() {
     const formInputs = document.querySelectorAll('#contactForm input');
