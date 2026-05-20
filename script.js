@@ -256,12 +256,12 @@ if (!document.querySelector('#notification-styles')) {
 }
 
 // Intersection Observer for scroll animations
-document.addEventListener('DOMContentLoaded', function() {
+function initScrollAnimations(root) {
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -270,17 +270,119 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-    
-    // Observe all sections and cards
-    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .contact-item');
-    
+
+    const elementsToAnimate = (root || document).querySelectorAll('.skill-category, .project-card, .timeline-item, .contact-item');
+
     elementsToAnimate.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
         element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(element);
     });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initScrollAnimations(null);
 });
+
+// ── Google Sheets CMS ──────────────────────────────────────────────────────────
+
+const SHEET_ID = '1b77yjNkYwqpx0s6QcJw_0mR0yoYLqlflXborvsevKjU';
+
+function parseCSV(text) {
+    const rawRows = [];
+    let fields = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+        if (inQuotes) {
+            if (ch === '"' && next === '"') { cur += '"'; i++; }
+            else if (ch === '"') { inQuotes = false; }
+            else { cur += ch; }
+        } else {
+            if (ch === '"') { inQuotes = true; }
+            else if (ch === ',') { fields.push(cur); cur = ''; }
+            else if (ch === '\r' && next === '\n') { fields.push(cur); cur = ''; rawRows.push(fields); fields = []; i++; }
+            else if (ch === '\n') { fields.push(cur); cur = ''; rawRows.push(fields); fields = []; }
+            else { cur += ch; }
+        }
+    }
+    if (cur || fields.length) { fields.push(cur); rawRows.push(fields); }
+
+    const headers = rawRows[0].map(h => h.trim());
+    return rawRows.slice(1).map(values => {
+        const obj = {};
+        headers.forEach((h, idx) => { obj[h] = (values[idx] || '').trim(); });
+        return obj;
+    });
+}
+
+async function fetchSheet(tab) {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(tab)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return parseCSV(await res.text());
+}
+
+const SVG_GITHUB = `<svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+
+const SVG_EXTERNAL = `<svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>`;
+
+function renderProjects(rows, container) {
+    const filtered = rows.filter(r => r.title && r.title.trim());
+    filtered.sort((a, b) => (parseInt(a.sort_order) || 999) - (parseInt(b.sort_order) || 999));
+
+    const cards = filtered.map(row => {
+        const techTags = (row.tech || '').split('|').filter(Boolean)
+            .map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
+
+        const bullets = (row.bullets || '').split('|').filter(Boolean)
+            .map(b => `<li>${b.trim()}</li>`).join('');
+
+        const links = [
+            row.github_url ? `<a class="project-link" href="${row.github_url}" target="_blank">${SVG_GITHUB}</a>` : '',
+            row.live_url   ? `<a class="project-link" href="${row.live_url}" target="_blank">${SVG_EXTERNAL}</a>` : ''
+        ].join('');
+
+        return `
+        <div class="project-card">
+            <div class="project-image">
+                <img src="./assets/${row.image}" alt="Screenshot of ${row.title} project" class="project-img" />
+                <div class="project-overlay">
+                    <div class="project-links">${links}</div>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">${row.title}</h3>
+                <ul class="project-description">${bullets}</ul>
+                <div class="project-tech">${techTags}</div>
+            </div>
+        </div>`;
+    });
+
+    container.innerHTML = cards.join('');
+}
+
+async function loadProjects() {
+    const container = document.querySelector('#projects .projects-grid');
+    if (!container) return;
+
+    container.innerHTML = '<p class="cms-loading">Loading...</p>';
+
+    try {
+        const rows = await fetchSheet('Projects');
+        renderProjects(rows, container);
+        initScrollAnimations(container);
+    } catch (err) {
+        container.innerHTML = '<p class="cms-error">Could not load projects. Please try refreshing.</p>';
+        console.error('Projects fetch failed:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadProjects);
 
 // Prevent form submission on Enter key in input fields (except textarea)
 document.addEventListener('DOMContentLoaded', function() {
