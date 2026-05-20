@@ -419,6 +419,52 @@ async function loadSkills() {
 
 document.addEventListener('DOMContentLoaded', loadSkills);
 
+function renderExperience(rows, container) {
+    rows.sort((a, b) => (parseInt(a.sort_order) || 999) - (parseInt(b.sort_order) || 999));
+
+    const items = rows.filter(r => r.title && r.company).map(row => {
+        const bullets = (row.bullets || '').split('|').filter(Boolean)
+            .map(b => `<li>${b.trim()}</li>`).join('');
+
+        const skills = (row.skills || '').split('|').filter(Boolean)
+            .map(s => `<span class="skill-tag">${s.trim()}</span>`).join('');
+
+        return `
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 class="experience-title">${row.title}</h3>
+                    <span class="experience-company">${row.company}</span>
+                    <span class="experience-period">${row.period}</span>
+                </div>
+                <ul class="experience-description">${bullets}</ul>
+                <div class="experience-skills">${skills}</div>
+            </div>
+        </div>`;
+    });
+
+    container.innerHTML = items.join('');
+}
+
+async function loadExperience() {
+    const container = document.querySelector('#experience .experience-timeline');
+    if (!container) return;
+
+    container.innerHTML = '<p class="cms-loading">Loading...</p>';
+
+    try {
+        const rows = await fetchSheet('Experience');
+        renderExperience(rows, container);
+        initScrollAnimations(container);
+    } catch (err) {
+        container.innerHTML = '<p class="cms-error">Could not load experience. Please try refreshing.</p>';
+        console.error('Experience fetch failed:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadExperience);
+
 // Prevent form submission on Enter key in input fields (except textarea)
 document.addEventListener('DOMContentLoaded', function() {
     const formInputs = document.querySelectorAll('#contactForm input');
