@@ -465,6 +465,79 @@ async function loadExperience() {
 
 document.addEventListener('DOMContentLoaded', loadExperience);
 
+function renderEducation(rows, container) {
+    rows.sort((a, b) => (parseInt(a.sort_order) || 999) - (parseInt(b.sort_order) || 999));
+
+    const items = [];
+    let i = 0;
+
+    while (i < rows.length) {
+        const row = rows[i];
+        if (row.type === 'degree') {
+            const studyAbroads = [];
+            let j = i + 1;
+            while (j < rows.length && rows[j].type === 'study_abroad') {
+                studyAbroads.push(rows[j]);
+                j++;
+            }
+
+            const tags = (row.tags || '').split('|').filter(Boolean)
+                .map(t => `<span class="skill-tag">${t.trim()}</span>`).join('');
+
+            const studyAbroadRows = studyAbroads.map(sa => `
+                <div class="education-info-row">
+                    <span class="education-institution">
+                        <span class="study-abroad-arrow">↳</span><span class="study-abroad-label"> Study Abroad</span>
+                        ${sa.institution}
+                    </span>
+                    <span class="education-period">${sa.period}</span>
+                </div>`).join('');
+
+            items.push(`
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h3 class="education-title">${row.degree}</h3>
+                        <p class="education-concentration">${row.concentration}</p>
+                        <div class="education-institution-row">
+                            <div class="education-info-row">
+                                <span class="education-institution">${row.institution}</span>
+                                <span class="education-period">${row.period}</span>
+                            </div>
+                            ${studyAbroadRows}
+                        </div>
+                    </div>
+                    ${tags ? `<div class="education-skills">${tags}</div>` : ''}
+                </div>
+            </div>`);
+
+            i = j;
+        } else {
+            i++;
+        }
+    }
+
+    container.innerHTML = items.join('');
+}
+
+async function loadEducation() {
+    const container = document.querySelector('#education .education-timeline');
+    if (!container) return;
+
+    container.innerHTML = '<p class="cms-loading">Loading...</p>';
+
+    try {
+        const rows = await fetchSheet('Education');
+        renderEducation(rows, container);
+        initScrollAnimations(container);
+    } catch (err) {
+        container.innerHTML = '<p class="cms-error">Could not load education. Please try refreshing.</p>';
+        console.error('Education fetch failed:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadEducation);
+
 // Prevent form submission on Enter key in input fields (except textarea)
 document.addEventListener('DOMContentLoaded', function() {
     const formInputs = document.querySelectorAll('#contactForm input');

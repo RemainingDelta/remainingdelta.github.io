@@ -609,16 +609,15 @@ section {
     margin-bottom: 0.25rem;
 }
 
-.study-abroad-badge {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border: 1.5px solid #7b8cff;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
+.study-abroad-arrow {
     color: #7b8cff;
-    margin-right: 0.4rem;
-    vertical-align: middle;
+    margin-right: 0.2rem;
+    font-size: 0.95rem;
+}
+
+.study-abroad-label {
+    color: #7b8cff;
+    margin-right: 0.35rem;
 }
 
 .education-institution {
